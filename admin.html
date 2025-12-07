@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Admin Dashboard - SimpleJob</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="admin-styles.css" />
+</head>
+<body>
+  <div class="admin-container">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="logo">
+        <h2>SimpleJob Admin</h2>
+      </div>
+      <nav class="sidebar-nav">
+        <a href="#dashboard" class="nav-item active">
+          <span class="icon">📊</span>
+          Dashboard
+        </a>
+        <a href="#applications" class="nav-item">
+          <span class="icon">📝</span>
+          Ansökningar
+        </a>
+        <a href="#users" class="nav-item">
+          <span class="icon">👥</span>
+          Användare
+        </a>
+        <a href="#settings" class="nav-item">
+          <span class="icon">⚙️</span>
+          Inställningar
+        </a>
+      </nav>
+      <div class="sidebar-footer">
+        <button class="logout-btn">Logga ut</button>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <header class="header">
+        <h1>Ansökningshantering</h1>
+        <div class="header-actions">
+          <button class="refresh-btn" onclick="loadApplications()">🔄 Uppdatera</button>
+          <button class="export-btn" onclick="exportData()">📥 Exportera</button>
+        </div>
+      </header>
+
+      <!-- Statistics Cards -->
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-icon">📊</div>
+          <div class="stat-content">
+            <h3 id="totalApplications">0</h3>
+            <p>Totala Ansökningar</p>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon">✅</div>
+          <div class="stat-content">
+            <h3 id="completedApplications">0</h3>
+            <p>Slutförda</p>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon">⏳</div>
+          <div class="stat-content">
+            <h3 id="pendingApplications">0</h3>
+            <p>Väntande</p>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon">💰</div>
+          <div class="stat-content">
+            <h3 id="totalPayout">0 kr</h3>
+            <p>Total Utbetalning</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Filters -->
+      <div class="filters">
+        <input type="text" id="searchInput" placeholder="Sök efter namn eller e-post..." class="search-input" />
+        <select id="statusFilter" class="filter-select">
+          <option value="all">Alla Status</option>
+          <option value="completed">Slutförd</option>
+          <option value="pending">Väntande</option>
+          <option value="incomplete">Ofullständig</option>
+        </select>
+        <input type="date" id="dateFilter" class="filter-input" />
+      </div>
+
+      <!-- Applications Table -->
+      <div class="table-container">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Namn</th>
+              <th>E-post</th>
+              <th>Betalningsmetod</th>
+              <th>Fråga 1</th>
+              <th>Fråga 2</th>
+              <th>Fråga 3</th>
+              <th>Fråga 4</th>
+              <th>Status</th>
+              <th>Datum</th>
+              <th>Åtgärder</th>
+            </tr>
+          </thead>
+          <tbody id="applicationsTableBody">
+            <!-- Data will be inserted here dynamically -->
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Empty State -->
+      <div id="emptyState" class="empty-state" style="display: none;">
+        <div class="empty-icon">📭</div>
+        <h3>Inga ansökningar ännu</h3>
+        <p>Ansökningsdata kommer att visas här när användare skickar in formuläret.</p>
+      </div>
+    </main>
+  </div>
+
+  <!-- Detail Modal -->
+  <div id="detailModal" class="modal" style="display: none;">
+    <div class="modal-overlay" onclick="closeModal()"></div>
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>Ansökningsdetaljer</h2>
+        <button class="close-btn" onclick="closeModal()">✕</button>
+      </div>
+      <div class="modal-body" id="modalBody">
+        <!-- Details will be inserted here -->
+      </div>
+      <div class="modal-footer">
+        <button class="btn-secondary" onclick="closeModal()">Stäng</button>
+        <button class="btn-primary" onclick="approveApplication()">Godkänn</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="admin-script.js"></script>
+</body>
+</html>
