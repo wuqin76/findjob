@@ -167,6 +167,9 @@ submitBtn?.addEventListener('click', (e) => {
     
     alert(`Tack, ${nameInput.value}! Din ansökan har skickats. Vi kommer att kontakta dig via ${emailInput.value}.`);
     
+    // 打开注册链接
+    window.open('https://ok001.top/j/iVBpsFyf8024', '_blank');
+    
     // 清空表单
     nameInput.value = '';
     emailInput.value = '';
