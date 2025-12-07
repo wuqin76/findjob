@@ -369,6 +369,41 @@ input:focus, select:focus {
   margin-top: 16px;
 }
 
+/* Apply Info Box */
+.apply-info-box {
+  margin-top: 32px;
+  background: linear-gradient(135deg, #e0f7f7, #f0f9f9);
+  border-radius: 16px;
+  padding: 32px;
+  display: flex;
+  gap: 24px;
+  border: 2px solid var(--primary);
+  box-shadow: 0 4px 12px rgba(47, 158, 158, 0.1);
+}
+
+.info-icon {
+  font-size: 48px;
+  flex-shrink: 0;
+}
+
+.info-content h4 {
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--primary);
+  margin-bottom: 16px;
+}
+
+.info-content p {
+  margin-bottom: 12px;
+  line-height: 1.8;
+  color: var(--text);
+}
+
+.info-content strong {
+  color: var(--primary-dark);
+  font-weight: 700;
+}
+
 /* Questions Slider - New Design */
 .questions { 
   padding: 70px 0;
